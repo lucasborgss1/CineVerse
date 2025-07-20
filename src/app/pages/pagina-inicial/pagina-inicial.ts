@@ -5,7 +5,6 @@ import { Footer } from '../../components/footer/footer';
 import { MediaItem } from '../../models/models';
 import { CommonModule } from '@angular/common';
 import { NgbdCarouselPause } from '../../components/ngbd-carousel-pause/ngbd-carousel-pause';
-
 import { CardsList } from '../../components/cards-list/cards-list';
 import { MovieDetails } from '../../components/movie-details/movie-details';
 
