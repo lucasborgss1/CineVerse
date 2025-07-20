@@ -1,0 +1,35 @@
+<app-header />
+<main>
+  <section class="carousel-section">
+    <ngbd-carousel-pause [content]="carouselData" />
+  </section>
+  <section class="movies-lists">
+    <div class="list">
+      <h3>Filmes de animação</h3>
+      <app-cards-list
+        [list]="filmesAnimacao"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+    <div class="list">
+      <h3>Para maratonar!</h3>
+      <app-cards-list
+        [list]="seriesAnimacao"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+
+    <div class="list">
+      <h3>Os melhores para as crianças</h3>
+      <app-cards-list [list]="desenhos" (cardSelected)="openDetails($event)" />
+    </div>
+  </section>
+
+  <app-movie-details
+    *ngIf="selectedMedia"
+    type="movie"
+    [media]="selectedMedia"
+    (close)="selectedMedia = null"
+  />
+</main>
+<app-footer> </app-footer>
