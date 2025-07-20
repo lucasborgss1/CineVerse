@@ -1,0 +1,44 @@
+.presenting-carousel {
+  width: 100%;
+}
+
+.img-wrapper {
+  display: flex;
+  height: 650px;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-wrapper img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background: rgba(0, 0, 0);
+  color: #fff;
+  max-height: 150px;
+  height: 100%;
+}
+
+.carousel-caption h3 {
+  font-size: 1.8rem;
+  color: #f5c51c;
+  font-weight: bold;
+}
+
+.carousel-caption p {
+  font-size: 1rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2rem;
+}

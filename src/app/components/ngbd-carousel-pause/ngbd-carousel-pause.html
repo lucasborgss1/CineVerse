@@ -1,0 +1,27 @@
+<ngb-carousel
+  #carousel
+  [interval]="3000"
+  [pauseOnHover]="pauseOnHover"
+  [pauseOnFocus]="pauseOnFocus"
+  (slide)="onSlide($event)"
+  class="presenting-carousel"
+>
+  <ng-template ngbSlide *ngFor="let item of content">
+    <div class="carousel-caption">
+      <h3>{{ item.name || item.title }}</h3>
+
+      <p>
+        {{ item.overview }}
+      </p>
+    </div>
+
+    <div class="img-wrapper">
+      <img
+        src="https://image.tmdb.org/t/p/original/{{
+          item.backdrop_path || item.poster_path
+        }}"
+        alt="{{ item.title || item.name }} image"
+      />
+    </div>
+  </ng-template>
+</ngb-carousel>
