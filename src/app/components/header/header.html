@@ -5,14 +5,48 @@
     </div>
     <nav class="nav">
       <ul class="nav-list">
-        <li><a href="#" (click)="selectFilter('trending')">Em alta</a></li>
-        <li><a href="#" (click)="selectFilter('movies')">Filmes</a></li>
-        <li><a href="#" (click)="selectFilter('tv')">Séries</a></li>
-        <li><a href="#" (click)="selectFilter('animation')">Desenhos</a></li>
         <li>
-          <a href="#" (click)="selectFilter('documentaries')">Documentários</a>
+          <a
+            routerLink="/cineverse"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Em alta</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/movies"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Filmes</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/series"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Séries</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/desenhos"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Animação</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/docs"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Documentários</a
+          >
         </li>
       </ul>
+
       <form
         class="search-form"
         (submit)="handleSearch(); $event.preventDefault()"

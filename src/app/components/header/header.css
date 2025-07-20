@@ -56,6 +56,11 @@ header {
   color: #f5c51c;
 }
 
+.nav-list li a.active {
+  color: #f5c51c;
+  font-weight: bold;
+}
+
 .search-form {
   display: flex;
   align-items: center;
