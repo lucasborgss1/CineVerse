@@ -1,0 +1,10 @@
+.lista {
+  display: flex;
+  max-width: 1400px;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

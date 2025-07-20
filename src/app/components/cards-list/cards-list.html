@@ -1,0 +1,19 @@
+<p-carousel
+  [value]="list"
+  [numVisible]="8"
+  [numScroll]="3"
+  [responsiveOptions]="responsiveOptions"
+  class="lista"
+>
+  <ng-template let-item pTemplate="item">
+    <div class="m-2">
+      <app-content-cards
+        [src]="item.poster_path || item.backdrop_path"
+        [title]="item.name || item.title"
+        [vote_average]="item.vote_average"
+        [data]="item"
+        (cardClick)="onCardClick(item)"
+      />
+    </div>
+  </ng-template>
+</p-carousel>
