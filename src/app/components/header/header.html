@@ -1,0 +1,41 @@
+<header>
+  <div class="header-container">
+    <div class="logo">
+      <a href=""><span>CINE</span> VERSE</a>
+    </div>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li><a href="#" (click)="selectFilter('trending')">Em alta</a></li>
+        <li><a href="#" (click)="selectFilter('movies')">Filmes</a></li>
+        <li><a href="#" (click)="selectFilter('tv')">Séries</a></li>
+        <li><a href="#" (click)="selectFilter('animation')">Desenhos</a></li>
+        <li>
+          <a href="#" (click)="selectFilter('documentaries')">Documentários</a>
+        </li>
+      </ul>
+      <form
+        class="search-form"
+        (submit)="handleSearch(); $event.preventDefault()"
+      >
+        <div
+          class="search-container"
+          (mouseenter)="isHovered = true"
+          (mouseleave)="isHovered = false"
+          [class.active]="isInputFocused || isHovered || query.length > 0"
+        >
+          <input
+            type="text"
+            placeholder="Filmes, Séries, Programas..."
+            [(ngModel)]="query"
+            name="searchInput"
+            (focus)="isInputFocused = true"
+            (blur)="isInputFocused = false"
+          />
+          <button type="submit" class="search-button">
+            <img src="icons/lupa.svg" alt="" />
+          </button>
+        </div>
+      </form>
+    </nav>
+  </div>
+</header>
