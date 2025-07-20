@@ -1,0 +1,44 @@
+.card {
+  display: flex;
+  width: 136px;
+  height: 194px;
+  background-color: transparent;
+  transition: all 0.4s;
+}
+
+.card:hover,
+.card:focus {
+  transform: scale(1.1);
+}
+
+.movie-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card-img {
+  width: 136px;
+  height: 194px;
+}
+
+.my-custom-class {
+  background-color: #f5c51c;
+  color: #f5c51c;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 200px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.my-custom-class .popover-header {
+  background-color: #2a2a2a;
+  color: #ffcc00;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 10px;
+  text-align: center;
+}
