@@ -1,0 +1,41 @@
+<app-header />
+<main>
+  <section class="carousel-section">
+    <ngbd-carousel-pause [content]="carouselData" />
+  </section>
+  <section class="movies-lists">
+    <div class="list">
+      <h3>Nos cinemas</h3>
+      <app-cards-list
+        [list]="nowPlayingMovies"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+
+    <div class="list">
+      <h3>Favoritos</h3>
+      <app-cards-list
+        [list]="popularMovies"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+
+    <div class="list">
+      <h3>Melhores filmes</h3>
+      <app-cards-list [list]="topRated" (cardSelected)="openDetails($event)" />
+    </div>
+
+    <div class="list">
+      <h3>Em breve</h3>
+      <app-cards-list [list]="upComing" (cardSelected)="openDetails($event)" />
+    </div>
+  </section>
+
+  <app-movie-details
+    *ngIf="selectedMedia"
+    type="movie"
+    [media]="selectedMedia"
+    (close)="selectedMedia = null"
+  />
+</main>
+<app-footer> </app-footer>
