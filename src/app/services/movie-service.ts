@@ -31,7 +31,7 @@ export class MovieService {
 
   getDataDefault(
     mediaType: 'tv' | 'movie',
-    request: 'top_rated' | 'upcoming' | 'popular'
+    request: 'top_rated' | 'upcoming' | 'popular' | 'now_playing'
   ): Observable<ApiResponse<MediaItem>> {
     const url = `${this.BASE_URL}/${mediaType}/${request}?language=pt-br&page=1`;
 
