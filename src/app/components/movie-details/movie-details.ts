@@ -12,20 +12,21 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MovieDetails implements OnInit {
   trailer?: string;
+  @Input() type?: string;
   @Input() media!: MediaItem;
   @Output() close = new EventEmitter<void>();
 
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
-    this.movieService
-      .getTrailers(this.media.media_type, this.media.id)
-      .subscribe((response) => {
-        const firstTrailer = response.results.find(
-          (video) => video.site === 'YouTube' && video.type === 'Trailer'
-        );
-        this.trailer = firstTrailer?.key ?? '';
-      });
+    const type = this.media.media_type || this.type || 'movie';
+
+    this.movieService.getTrailers(type, this.media.id).subscribe((response) => {
+      const firstTrailer = response.results.find(
+        (video) => video.site === 'YouTube' && video.type === 'Trailer'
+      );
+      this.trailer = firstTrailer?.key ?? '';
+    });
   }
 
   closeDetails() {
