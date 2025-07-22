@@ -36,13 +36,13 @@ export class PaginaInicial implements OnInit {
     this.movieService
       .getDataDefault('movie', 'upcoming')
       .subscribe((response) => {
-        for (let index = 0; index < 5; index++) {
-          this.carouselData.push(response.results[index]);
-        }
         this.upcomingList = response.results;
       });
 
     this.movieService.getTrending('all', 'day').subscribe((response) => {
+      for (let index = 0; index < 5; index++) {
+        this.carouselData.push(response.results[index]);
+      }
       this.trendingList = response.results;
     });
 
