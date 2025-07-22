@@ -31,9 +31,16 @@ export class MovieService {
 
   getDataDefault(
     mediaType: 'tv' | 'movie',
-    request: 'top_rated' | 'upcoming' | 'popular' | 'now_playing'
+    request:
+      | 'top_rated'
+      | 'upcoming'
+      | 'popular'
+      | 'now_playing'
+      | 'airing_today'
+      | 'on_the_air',
+    pagina: number = 1
   ): Observable<ApiResponse<MediaItem>> {
-    const url = `${this.BASE_URL}/${mediaType}/${request}?language=pt-br&page=1`;
+    const url = `${this.BASE_URL}/${mediaType}/${request}?language=pt-br&page=${pagina}`;
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.TOKEN}`,
