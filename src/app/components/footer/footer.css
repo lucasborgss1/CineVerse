@@ -11,7 +11,7 @@ footer {
 
 .link-direitos {
   text-decoration: none;
-  color: #fff;
+  color: #f5c51c;
 }
 
 .link-direitos:hover {
@@ -24,13 +24,12 @@ footer {
 }
 
 .links-social a {
-  color: #fff;
+  color: #f5c51c;
   transition: all 0.1s;
 }
 
 .links-social a:hover {
   transform: scale(1.1);
-  color: #000000;
 }
 
 .links-social a svg {
@@ -48,13 +47,14 @@ footer {
 .logo p {
   font-size: 1rem;
   font-weight: 900;
-  color: #000;
+  color: #f5c51c;
   margin: 0;
 }
 
 .logo p span {
-  background-color: #000;
+  background-color: #f5c51c;
   padding: 2px;
   border-radius: 5px;
-  color: #f5c51c;
+  color: #000000;
+  margin-left: 4px;
 }
