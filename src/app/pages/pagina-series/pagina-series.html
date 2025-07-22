@@ -1,1 +1,44 @@
-<p>pagina-series works!</p>
+<app-header />
+<main>
+  <section class="carousel-section">
+    <ngbd-carousel-pause [content]="carouselData" />
+  </section>
+  <section class="movies-lists">
+    <div class="list">
+      <h3>Tendências</h3>
+      <app-cards-list
+        [list]="seriesTrending"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+    <div class="list">
+      <h3>Para maratonar</h3>
+      <app-cards-list
+        [list]="seriesTopRated"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+    <div class="list">
+      <h3>No ar!</h3>
+      <app-cards-list
+        [list]="seriesOnTheAir"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+    <div class="list">
+      <h3>Descrubra</h3>
+      <app-cards-list
+        [list]="seriesAiringToday"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+  </section>
+
+  <app-movie-details
+    *ngIf="selectedMedia"
+    type="tv"
+    [media]="selectedMedia"
+    (close)="selectedMedia = null"
+  />
+</main>
+<app-footer> </app-footer>
