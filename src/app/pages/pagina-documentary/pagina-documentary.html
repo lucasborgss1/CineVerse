@@ -1,1 +1,30 @@
-<p>pagina-documentary works!</p>
+<app-header />
+<main>
+  <section class="carousel-section">
+    <ngbd-carousel-pause [content]="carouselData" />
+  </section>
+  <section class="movies-lists">
+    <div class="list">
+      <h3>Filmes</h3>
+      <app-cards-list
+        [list]="moviesDocumentary"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+
+    <div class="list">
+      <h3>Séries</h3>
+      <app-cards-list
+        [list]="seriesDocumentary"
+        (cardSelected)="openDetails($event)"
+      />
+    </div>
+  </section>
+
+  <app-movie-details
+    *ngIf="selectedMedia"
+    [media]="selectedMedia"
+    (close)="selectedMedia = null"
+  />
+</main>
+<app-footer> </app-footer>
