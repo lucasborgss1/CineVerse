@@ -11,6 +11,10 @@
         (cardSelected)="openDetails($event)"
       />
     </div>
+    <div class="list">
+      <h3>Lançamentos</h3>
+      <app-cards-list [list]="upComing" (cardSelected)="openDetails($event)" />
+    </div>
 
     <div class="list">
       <h3>Favoritos</h3>
@@ -23,11 +27,6 @@
     <div class="list">
       <h3>Melhores filmes</h3>
       <app-cards-list [list]="topRated" (cardSelected)="openDetails($event)" />
-    </div>
-
-    <div class="list">
-      <h3>Em breve</h3>
-      <app-cards-list [list]="upComing" (cardSelected)="openDetails($event)" />
     </div>
   </section>
 

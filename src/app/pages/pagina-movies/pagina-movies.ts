@@ -41,7 +41,7 @@ export class PaginaMovies implements OnInit {
         this.nowPlayingMovies = response.results;
       });
     this.movieService
-      .getDataDefault('movie', 'upcoming')
+      .getDataDefault('movie', 'upcoming', 1)
       .subscribe((response) => {
         this.upComing = response.results;
       });
@@ -53,7 +53,7 @@ export class PaginaMovies implements OnInit {
       });
 
     this.movieService
-      .getDataDefault('movie', 'top_rated')
+      .getDataDefault('movie', 'top_rated', 3)
       .subscribe((response) => {
         this.topRated = response.results;
       });
