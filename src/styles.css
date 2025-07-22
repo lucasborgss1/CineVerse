@@ -12,30 +12,10 @@ button {
 }
 
 body {
-  color: #fff;
+  color: #f5c51c;
   background-color: #000;
   min-height: 100vh;
   margin: 0 auto;
-  background: #000000;
-  background: -webkit-linear-gradient(
-    179deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 55%,
-    rgba(245, 197, 28, 1) 100%
-  );
-  background: -moz-linear-gradient(
-    179deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 55%,
-    rgba(245, 197, 28, 1) 100%
-  );
-  background: linear-gradient(
-    179deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 55%,
-    rgba(245, 197, 28, 1) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#F5C51C", GradientType=0);
 }
 
 main {
