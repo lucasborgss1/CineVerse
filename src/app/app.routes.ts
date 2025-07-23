@@ -7,18 +7,25 @@ import { PaginaDocumentary } from './pages/pagina-documentary/pagina-documentary
 import { PaginaQuery } from './pages/pagina-query/pagina-query';
 import { AuthGuard } from './guards/auth.guard-guard';
 import { Login } from './pages/login/login';
+import { PaginaExperiencia } from './pages/pagina-experiencia/pagina-experiencia';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'cineverse', pathMatch: 'full' },
+  { path: '', redirectTo: 'experiencia', pathMatch: 'full' },
 
   {
-    path: 'cineverse',
-    component: PaginaInicial,
+    path: 'experiencia',
+    component: PaginaExperiencia,
   },
   {
     path: 'login',
     component: Login,
   },
+  {
+    path: 'cineverse',
+    component: PaginaInicial,
+    canActivate: [AuthGuard],
+  },
+
   {
     path: 'movies',
     component: PaginaMovies,
