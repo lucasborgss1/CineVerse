@@ -4,7 +4,7 @@
     <ngbd-carousel-pause [content]="carouselData" />
   </section>
   <section class="movies-lists">
-    <div class="list">
+    <div class="list" *ngIf="isMoviesLoaded">
       <h3>Filmes</h3>
       <app-cards-list
         [list]="moviesDocumentary"
@@ -12,7 +12,7 @@
       />
     </div>
 
-    <div class="list">
+    <div class="list" *ngIf="isSeriesLoaded">
       <h3>Séries</h3>
       <app-cards-list
         [list]="seriesDocumentary"

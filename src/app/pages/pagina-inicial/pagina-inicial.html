@@ -1,10 +1,12 @@
 <app-header />
+
 <main>
-  <section class="carousel-section">
+  <section class="carousel-section" *ngIf="isCarouselLoaded">
     <ngbd-carousel-pause [content]="carouselData" />
   </section>
+
   <section class="movies-lists">
-    <div class="list">
+    <div class="list" *ngIf="isUpcomingLoaded">
       <h3>Em breve</h3>
       <app-cards-list
         [list]="upcomingList"
@@ -12,7 +14,7 @@
       />
     </div>
 
-    <div class="list">
+    <div class="list" *ngIf="isTrendingLoaded">
       <h3>Em alta</h3>
       <app-cards-list
         [list]="trendingList"
@@ -20,7 +22,7 @@
       />
     </div>
 
-    <div class="list">
+    <div class="list" *ngIf="isTopRatedMoviesLoaded">
       <h3>Melhores filmes</h3>
       <app-cards-list
         [list]="topRatedMoviesList"
@@ -28,7 +30,7 @@
       />
     </div>
 
-    <div class="list">
+    <div class="list" *ngIf="isTopRatedTvLoaded">
       <h3>Para maratonar</h3>
       <app-cards-list
         [list]="topRatedTvList"
@@ -43,4 +45,5 @@
     (close)="selectedMedia = null"
   />
 </main>
-<app-footer> </app-footer>
+
+<app-footer />

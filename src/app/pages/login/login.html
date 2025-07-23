@@ -1,0 +1,190 @@
+<main>
+  <section>
+    <div class="logo" style="margin-top: 3rem; color: #f5c51c">
+      <a href=""><span>CINE</span> VERSE</a> &copy;
+    </div>
+    <p style="margin: 0">
+      Ao acessar sua conta, você terá acesso a recursos exclusivos que tornarão
+      sua experiência ainda melhor:
+    </p>
+    <div style="display: flex">
+      <div class="descricao text-light">
+        <ul class="list-unstyled mt-3">
+          <li class="mb-2">
+            <i class="bi bi-film" style="color: #f5c51c; margin-right: 8px"></i>
+            Páginas completas de <strong>filmes</strong>,
+            <strong>séries</strong> e <strong>documentários</strong>
+          </li>
+          <li class="mb-2">
+            <i
+              class="bi bi-search"
+              style="color: #f5c51c; margin-right: 8px"
+            ></i>
+            <strong>Pesquisa rápida</strong> por nome de títulos
+          </li>
+          <li class="mb-2">
+            <i
+              class="bi bi-funnel-fill"
+              style="color: #f5c51c; margin-right: 8px"
+            ></i>
+            <strong>Filtros personalizados</strong> para refinar sua busca
+          </li>
+          <li class="mb-2">
+            <i
+              class="bi bi-star-fill"
+              style="color: #f5c51c; margin-right: 8px"
+            ></i>
+            Criação de <strong>listas de favoritos</strong>
+          </li>
+          <li class="mb-2">
+            <i
+              class="bi bi-person-check"
+              style="color: #f5c51c; margin-right: 8px"
+            ></i>
+            Uma experiência <strong>adaptada ao seu perfil</strong>
+          </li>
+        </ul>
+      </div>
+
+      <form
+        *ngIf="!isCadastro"
+        class="form-login"
+        [formGroup]="formLogin"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="position-relative">
+          <label for="exampleInputEmail1" class="form-label">Login</label>
+          <input
+            type="text"
+            class="form-control"
+            id="InputLogin"
+            formControlName="nome"
+            placeholder="Digite seu login"
+          />
+        </div>
+        <div class="position-relative">
+          <label for="exampleInputPassword1" class="form-label">Senha:</label>
+          <div style="position: relative; display: flex; align-items: center">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              class="form-control"
+              id="InputPassword"
+              placeholder="Digite sua senha"
+              formControlName="senha"
+              style="padding-right: 2.5rem; width: 400px"
+            />
+            <i
+              class="bi bi-eye-slash toggle-password"
+              (click)="togglePassword()"
+              style="
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                font-size: 1.2rem;
+                color: #f5c51c;
+              "
+            ></i>
+          </div>
+        </div>
+
+        <a class="form-text" style="cursor: pointer" (click)="goToCadastro()"
+          >Cadastre-se</a
+        >
+
+        <div
+          *ngIf="errorMessage"
+          class="text-danger"
+          style="width: 300px; text-align: center"
+        >
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </form>
+
+      <form
+        *ngIf="isCadastro"
+        class="form-login"
+        [formGroup]="formLogin"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="d-flex justify-content-between" style="width: 100%">
+          <a class="cadastrobt" style="cursor: pointer" (click)="goToLogin()">
+            voltar
+          </a>
+        </div>
+        <div class="position-relative">
+          <label class="form-label">Informe seu nome</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nome"
+            placeholder="Digite seu nome"
+          />
+        </div>
+        <div class="position-relative">
+          <label class="form-label">Informe seu e-mail</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="email"
+            placeholder="Digite seu email"
+          />
+        </div>
+        <div class="position-relative">
+          <label class="form-label">Crie uma senha:</label>
+          <div style="position: relative; display: flex; align-items: center">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              class="form-control"
+              id="InputPassword"
+              placeholder="Digite sua senha"
+              formControlName="senha"
+              style="padding-right: 2.5rem; width: 400px"
+            />
+            <i
+              class="bi bi-eye-slash toggle-password"
+              (click)="togglePassword()"
+              style="
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                font-size: 1.2rem;
+                color: #f5c51c;
+              "
+            ></i>
+          </div>
+        </div>
+
+        <div
+          class="d-flex"
+          style="
+            max-width: 100%;
+            align-items: start;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 1rem;
+          "
+        >
+          <input type="checkbox" id="lgpdConsent" formControlName="lgpd" />
+          <label class="d-block form-text" for="lgpdConsent">
+            Concordo com os <a href="#">termos de uso</a> e a
+            <a href="#">política de privacidade</a>.
+          </label>
+        </div>
+
+        <div
+          *ngIf="errorMessage"
+          class="text-danger"
+          style="width: 300px; text-align: center"
+        >
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastre-se</button>
+      </form>
+    </div>
+  </section>
+</main>

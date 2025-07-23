@@ -1,32 +1,36 @@
 <app-header />
 <main>
-  <section class="carousel-section">
+  <section class="carousel-section" *ngIf="isCarouselLoaded">
     <ngbd-carousel-pause [content]="carouselData" />
   </section>
+
   <section class="movies-lists">
-    <div class="list">
+    <div class="list" *ngIf="isTrendingLoaded">
       <h3>Tendências</h3>
       <app-cards-list
         [list]="seriesTrending"
         (cardSelected)="openDetails($event)"
       />
     </div>
-    <div class="list">
+
+    <div class="list" *ngIf="isTopRatedLoaded">
       <h3>Para maratonar</h3>
       <app-cards-list
         [list]="seriesTopRated"
         (cardSelected)="openDetails($event)"
       />
     </div>
-    <div class="list">
+
+    <div class="list" *ngIf="isOnTheAirLoaded">
       <h3>No ar!</h3>
       <app-cards-list
         [list]="seriesOnTheAir"
         (cardSelected)="openDetails($event)"
       />
     </div>
-    <div class="list">
-      <h3>Descrubra</h3>
+
+    <div class="list" *ngIf="isAiringTodayLoaded">
+      <h3>Descubra</h3>
       <app-cards-list
         [list]="seriesAiringToday"
         (cardSelected)="openDetails($event)"

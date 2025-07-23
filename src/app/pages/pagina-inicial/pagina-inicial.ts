@@ -28,6 +28,12 @@ export class PaginaInicial implements OnInit {
   topRatedTvList: MediaItem[] = []; //programas de tv bem avaliados
   carouselData: MediaItem[] = [];
 
+  isCarouselLoaded = false;
+  isUpcomingLoaded = false;
+  isTrendingLoaded = false;
+  isTopRatedMoviesLoaded = false;
+  isTopRatedTvLoaded = false;
+
   selectedMedia: any = null;
 
   constructor(private movieService: MovieService) {}
@@ -37,25 +43,28 @@ export class PaginaInicial implements OnInit {
       .getDataDefault('movie', 'upcoming')
       .subscribe((response) => {
         this.upcomingList = response.results;
+        this.isUpcomingLoaded = true;
       });
 
     this.movieService.getTrending('all', 'day').subscribe((response) => {
-      for (let index = 0; index < 5; index++) {
-        this.carouselData.push(response.results[index]);
-      }
+      this.carouselData = response.results.slice(0, 5);
       this.trendingList = response.results;
+      this.isTrendingLoaded = true;
+      this.isCarouselLoaded = true;
     });
 
     this.movieService
       .getDataDefault('tv', 'top_rated')
       .subscribe((response) => {
         this.topRatedTvList = response.results;
+        this.isTopRatedTvLoaded = true;
       });
 
     this.movieService
       .getDataDefault('movie', 'top_rated')
       .subscribe((response) => {
         this.topRatedMoviesList = response.results;
+        this.isTopRatedMoviesLoaded = true;
       });
   }
 

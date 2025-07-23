@@ -1,0 +1,29 @@
+<app-header />
+<main>
+  <div class="container">
+    <h2 *ngIf="!loading && resultados.length">Resultados encontrados:</h2>
+    <p *ngIf="!loading && resultados.length === 0">
+      Nenhum resultado encontrado.
+    </p>
+
+    <div *ngIf="loading">Carregando...</div>
+
+    <div class="grid-gallery" *ngIf="!loading && resultados.length > 0">
+      <app-content-cards
+        *ngFor="let item of resultados"
+        [src]="item.poster_path || item.backdrop_path || ''"
+        [title]="item.name || item.title || ''"
+        [vote_average]="item.vote_average"
+        [data]="item"
+        (cardClick)="openDetails(item)"
+      />
+    </div>
+  </div>
+
+  <app-movie-details
+    *ngIf="selectedMedia"
+    [media]="selectedMedia"
+    (close)="selectedMedia = null"
+  />
+</main>
+<app-footer />

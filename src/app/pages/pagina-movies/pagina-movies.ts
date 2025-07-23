@@ -30,32 +30,42 @@ export class PaginaMovies implements OnInit {
 
   selectedMedia: any = null;
 
+  isNowPlayingLoaded = false;
+  isUpcomingLoaded = false;
+  isPopularLoaded = false;
+  isTopRatedLoaded = false;
+  isCarouselLoaded = false;
+
   constructor(private movieService: MovieService) {}
   ngOnInit(): void {
     this.movieService
       .getDataDefault('movie', 'now_playing')
       .subscribe((response) => {
-        for (let index = 0; index < 5; index++) {
-          this.carouselData.push(response.results[index]);
-        }
+        this.carouselData = response.results.slice(0, 5);
         this.nowPlayingMovies = response.results;
+        this.isNowPlayingLoaded = true;
+        this.isCarouselLoaded = true;
       });
+
     this.movieService
-      .getDataDefault('movie', 'upcoming', 1)
+      .getDataDefault('movie', 'upcoming')
       .subscribe((response) => {
         this.upComing = response.results;
+        this.isUpcomingLoaded = true;
       });
 
     this.movieService
       .getDataDefault('movie', 'popular')
       .subscribe((response) => {
         this.popularMovies = response.results;
+        this.isPopularLoaded = true;
       });
 
     this.movieService
       .getDataDefault('movie', 'top_rated', 3)
       .subscribe((response) => {
         this.topRated = response.results;
+        this.isTopRatedLoaded = true;
       });
   }
 

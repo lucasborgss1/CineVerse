@@ -1,41 +1,54 @@
 <div class="movie-details-backdrop" (click)="closeDetails()"></div>
+
 <div
   class="movie-details-container"
   [ngStyle]="{
     'background-image':
-      'linear-gradient(to left, rgba(30,30,30,0) 0%, rgba(30,30,30,0.9) 50%), url(https://image.tmdb.org/t/p/original/' +
-      (media.backdrop_path || media.poster_path) +
-      ')'
+      media.backdrop_path || media.poster_path
+        ? 'linear-gradient(to left, rgba(30,30,30,0) 0%, rgba(30,30,30,0.9) 50%), url(https://image.tmdb.org/t/p/w1280/' +
+          (media.backdrop_path || media.poster_path) +
+          ')'
+        : 'none'
   }"
 >
-  <button class="close-btn" (click)="closeDetails()">X</button>
+  <button
+    class="close-btn"
+    aria-label="Fechar detalhes"
+    (click)="closeDetails()"
+  >
+    &times;
+  </button>
+
   <div class="infos">
     <h2>{{ media.title || media.name }}</h2>
-    <p
-      *ngIf="media.first_air_date || media.release_date"
-      style="text-align: center"
-    >
+
+    <p *ngIf="media.first_air_date || media.release_date" class="date">
       {{ media.first_air_date || media.release_date | date : "dd/MM/yyyy" }}
     </p>
-    <div style="display: flex; justify-content: space-between">
-      <h6>Popularidade: {{ media.popularity | number : "1.0-3" }}</h6>
 
-      <p style="gap: 1rem; display: flex">
-        <ngb-rating [(rate)]="media.vote_average" [readonly]="true" />
-        <strong>({{ media.vote_average | number : "1.1-2" }}) </strong>
+    <div class="ratings">
+      <h6>Popularidade: {{ media.popularity | number : "1.0-3" }}</h6>
+      <p class="stars">
+        <ngb-rating
+          [(rate)]="media.vote_average"
+          [readonly]="true"
+          aria-label="Avaliação"
+        />
+        <strong>({{ media.vote_average | number : "1.1-2" }})</strong>
       </p>
     </div>
-    <p>{{ getGenres(media).join(", ") }}</p>
 
-    <p>{{ media.overview || "Descrição não disponível." }}</p>
+    <p class="genres">{{ getGenres(media).join(", ") }}</p>
+    <p class="overview">{{ media.overview || "Descrição não disponível." }}</p>
+
     <a
       *ngIf="trailer"
       [href]="'https://www.youtube.com/watch?v=' + trailer"
       target="_blank"
       rel="noopener noreferrer"
-      style="text-decoration: none; display: flex; width: 200px"
+      class="trailer-link"
     >
-      <button class="btn trailer-button">Assista o trailer</button>
+      <button class="btn trailer-button">🎬 Assista o trailer</button>
     </a>
   </div>
 </div>

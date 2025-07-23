@@ -29,33 +29,36 @@ export class PaginaSeries implements OnInit {
 
   selectedMedia: any = null;
 
+  isTrendingLoaded = false;
+  isTopRatedLoaded = false;
+  isAiringTodayLoaded = false;
+  isOnTheAirLoaded = false;
+  isCarouselLoaded = false;
+
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
     this.movieService.getTrending('tv', 'day').subscribe((response) => {
-      for (let index = 0; index < 5; index++) {
-        this.carouselData.push(response.results[index]);
-      }
+      this.carouselData = response.results.slice(0, 5);
       this.seriesTrending = response.results;
+      this.isTrendingLoaded = true;
+      this.isCarouselLoaded = true;
     });
 
-    this.movieService
-      .getDataDefault('tv', 'top_rated', 2)
-      .subscribe((response) => {
-        this.seriesTopRated = response.results;
-      });
+    this.movieService.getDataDefault('tv', 'top_rated', 2).subscribe((res) => {
+      this.seriesTopRated = res.results;
+      this.isTopRatedLoaded = true;
+    });
 
-    this.movieService
-      .getDataDefault('tv', 'airing_today')
-      .subscribe((response) => {
-        this.seriesAiringToday = response.results;
-      });
+    this.movieService.getDataDefault('tv', 'airing_today').subscribe((res) => {
+      this.seriesAiringToday = res.results;
+      this.isAiringTodayLoaded = true;
+    });
 
-    this.movieService
-      .getDataDefault('tv', 'on_the_air', 3)
-      .subscribe((response) => {
-        this.seriesOnTheAir = response.results;
-      });
+    this.movieService.getDataDefault('tv', 'on_the_air', 3).subscribe((res) => {
+      this.seriesOnTheAir = res.results;
+      this.isOnTheAirLoaded = true;
+    });
   }
 
   openDetails(media: MediaItem) {

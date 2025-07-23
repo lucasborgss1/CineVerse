@@ -3,6 +3,7 @@ import { MediaItem, MOVIE_GENRES, TV_GENRES } from '../../models/models';
 import { MovieService } from '../../services/movie-service';
 import { CommonModule } from '@angular/common';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-movie-details',
@@ -12,6 +13,7 @@ import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class MovieDetails implements OnInit {
   trailer?: string;
+  loadingTrailer = false;
   @Input() type?: string;
   @Input() media!: MediaItem;
   @Output() close = new EventEmitter<void>();
@@ -20,13 +22,18 @@ export class MovieDetails implements OnInit {
 
   ngOnInit(): void {
     const type = this.media.media_type || this.type || 'movie';
+    this.loadingTrailer = true;
 
-    this.movieService.getTrailers(type, this.media.id).subscribe((response) => {
-      const firstTrailer = response.results.find(
-        (video) => video.site === 'YouTube' && video.type === 'Trailer'
-      );
-      this.trailer = firstTrailer?.key ?? '';
-    });
+    this.movieService
+      .getTrailers(type, this.media.id)
+      .pipe(take(1))
+      .subscribe((response) => {
+        const firstTrailer = response.results.find(
+          (video) => video.site === 'YouTube' && video.type === 'Trailer'
+        );
+        this.trailer = firstTrailer?.key ?? '';
+        this.loadingTrailer = false;
+      });
   }
 
   closeDetails() {

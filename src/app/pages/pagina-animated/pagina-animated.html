@@ -4,14 +4,14 @@
     <ngbd-carousel-pause [content]="carouselData" />
   </section>
   <section class="movies-lists">
-    <div class="list">
+    <div class="list" *ngIf="isFilmesAnimacaoLoaded">
       <h3>Filmes de animação</h3>
       <app-cards-list
         [list]="filmesAnimacao"
         (cardSelected)="openDetails($event)"
       />
     </div>
-    <div class="list">
+    <div class="list" *ngIf="isSeriesAnimacaoLoaded">
       <h3>Para maratonar!</h3>
       <app-cards-list
         [list]="seriesAnimacao"
@@ -19,7 +19,7 @@
       />
     </div>
 
-    <div class="list">
+    <div class="list" *ngIf="isDesenhosLoaded">
       <h3>Os melhores para as crianças</h3>
       <app-cards-list [list]="desenhos" (cardSelected)="openDetails($event)" />
     </div>

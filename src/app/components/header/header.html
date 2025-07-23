@@ -4,7 +4,7 @@
       <a href=""><span>CINE</span> VERSE</a>
     </div>
     <nav class="nav">
-      <ul class="nav-list">
+      <ul class="nav-list" *ngIf="isLoggedIn">
         <li>
           <a
             routerLink="/cineverse"
@@ -50,6 +50,7 @@
       <form
         class="search-form"
         (submit)="handleSearch(); $event.preventDefault()"
+        *ngIf="isLoggedIn"
       >
         <div
           class="search-container"
@@ -70,6 +71,13 @@
           </button>
         </div>
       </form>
+
+      <a
+        *ngIf="!isLoggedIn"
+        class="btn btn-outline-secondary"
+        (click)="goToLogin()"
+        >Fazer Login</a
+      >
     </nav>
   </div>
 </header>

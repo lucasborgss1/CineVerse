@@ -25,10 +25,13 @@ export class PaginaAnimated implements OnInit {
   filmesAnimacao: MediaItem[] = [];
   desenhos: MediaItem[] = [];
   seriesAnimacao: MediaItem[] = [];
-  upComing: MediaItem[] = [];
   carouselData: MediaItem[] = [];
 
   selectedMedia: any = null;
+
+  isFilmesAnimacaoLoaded = false;
+  isDesenhosLoaded = false;
+  isSeriesAnimacaoLoaded = false;
 
   constructor(private movieService: MovieService) {}
 
@@ -38,14 +41,17 @@ export class PaginaAnimated implements OnInit {
         this.carouselData.push(response.results[index]);
       }
       this.filmesAnimacao = response.results;
+      this.isFilmesAnimacaoLoaded = true;
     });
 
     this.movieService.getDataByGenre('tv', 16).subscribe((response) => {
       this.seriesAnimacao = response.results;
+      this.isSeriesAnimacaoLoaded = true;
     });
 
     this.movieService.getDataByGenre('tv', 10762).subscribe((response) => {
       this.desenhos = response.results;
+      this.isDesenhosLoaded = true;
     });
   }
 

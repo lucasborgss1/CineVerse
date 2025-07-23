@@ -23,6 +23,8 @@ export class NgbdCarouselPause {
   pauseOnIndicator = false;
   pauseOnHover = true;
   pauseOnFocus = true;
+  loadedImages = 0;
+  allImagesLoaded = false;
 
   @ViewChild('carousel', { static: true }) carousel!: NgbCarousel;
 
@@ -50,6 +52,13 @@ export class NgbdCarouselPause {
       slideEvent.source === NgbSlideEventSource.INDICATOR
     ) {
       this.togglePaused();
+    }
+  }
+
+  onImageLoad(): void {
+    this.loadedImages++;
+    if (this.loadedImages >= this.content.length) {
+      this.allImagesLoaded = true;
     }
   }
 }

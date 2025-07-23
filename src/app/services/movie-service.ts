@@ -79,4 +79,21 @@ export class MovieService {
 
     return this.http.get<ApiResponse<MediaItem>>(url, { headers, params });
   }
+
+  searchMulti(query: string): Observable<ApiResponse<MediaItem>> {
+    const url = `${this.BASE_URL}/search/multi`;
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.TOKEN}`,
+      accept: 'application/json',
+    });
+
+    const params = new HttpParams()
+      .set('query', query)
+      .set('language', 'pt-BR')
+      .set('include_adult', 'false')
+      .set('page', '1');
+
+    return this.http.get<ApiResponse<MediaItem>>(url, { headers, params });
+  }
 }

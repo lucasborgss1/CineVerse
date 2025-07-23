@@ -8,3 +8,10 @@
   align-items: center;
   justify-content: center;
 }
+
+.loading-message {
+  text-align: center;
+  font-weight: bold;
+  padding: 1rem;
+  color: #f5c51c;
+}

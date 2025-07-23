@@ -14,7 +14,9 @@ import { CarouselModule } from 'primeng/carousel';
 export class CardsList {
   @Input() list: MediaItem[] = [];
   @Output() cardSelected = new EventEmitter<any>();
-
+  get isLoaded(): boolean {
+    return this.list && this.list.length > 0;
+  }
   onCardClick(item: any) {
     this.cardSelected.emit(item);
   }

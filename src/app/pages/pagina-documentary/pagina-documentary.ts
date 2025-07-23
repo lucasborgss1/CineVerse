@@ -29,6 +29,9 @@ export class PaginaDocumentary {
 
   selectedMedia: any = null;
 
+  isMoviesLoaded = false;
+  isSeriesLoaded = false;
+
   constructor(private movieService: MovieService) {}
 
   ngOnInit() {
@@ -37,10 +40,12 @@ export class PaginaDocumentary {
         this.carouselData.push(response.results[index]);
       }
       this.moviesDocumentary = response.results;
+      this.isMoviesLoaded = true;
     });
 
     this.movieService.getDataByGenre('tv', 99).subscribe((response) => {
       this.seriesDocumentary = response.results;
+      this.isSeriesLoaded = true;
     });
   }
 
