@@ -77,7 +77,7 @@ export class Login implements OnInit {
         nome: this.usuario.nome,
         email: this.usuario.email,
       });
-      this.router.navigate(['/login']);
+      this.router.navigate(['/movies']);
     } else {
       this.errorMessage = 'Usuário ou senha inválidos.';
     }
