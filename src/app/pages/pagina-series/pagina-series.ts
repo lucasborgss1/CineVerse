@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MovieDetails } from '../../components/movie-details/movie-details';
 import { MediaItem } from '../../models/models';
 import { MovieService } from '../../services/movie-service';
+import { Background } from '../../components/background/background';
 @Component({
   selector: 'app-pagina-series',
   imports: [
@@ -16,6 +17,7 @@ import { MovieService } from '../../services/movie-service';
     CardsList,
     MovieDetails,
     CommonModule,
+    Background,
   ],
   templateUrl: './pagina-series.html',
   styleUrl: './pagina-series.css',

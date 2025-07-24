@@ -1,7 +1,10 @@
 <app-header />
 <main>
   <div class="container">
-    <h2 *ngIf="!loading && resultados.length">Resultados encontrados:</h2>
+    <h2 *ngIf="!loading && resultados.length">
+      Resultados encontrados para:
+      <span style="color: white; margin-left: 1rem">{{ queryText }}</span>
+    </h2>
     <p *ngIf="!loading && resultados.length === 0">
       Nenhum resultado encontrado.
     </p>
@@ -27,3 +30,4 @@
   />
 </main>
 <app-footer />
+<app-background> </app-background>

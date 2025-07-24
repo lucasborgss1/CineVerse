@@ -8,10 +8,18 @@ import { Footer } from '../../components/footer/footer';
 import { ContentCards } from '../../components/content-cards/content-cards';
 import { MovieDetails } from '../../components/movie-details/movie-details';
 import { CardsList } from '../../components/cards-list/cards-list';
+import { Background } from '../../components/background/background';
 
 @Component({
   selector: 'app-pagina-query',
-  imports: [CommonModule, Header, Footer, MovieDetails, ContentCards],
+  imports: [
+    CommonModule,
+    Header,
+    Footer,
+    MovieDetails,
+    ContentCards,
+    Background,
+  ],
   templateUrl: './pagina-query.html',
   styleUrl: './pagina-query.css',
 })
@@ -20,6 +28,7 @@ export class PaginaQuery implements OnInit {
   resultados: MediaItem[] = [];
   loading = true;
   selectedMedia: any = null;
+  queryText = [''];
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +37,7 @@ export class PaginaQuery implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
+      this.queryText = params['q'];
       const query = params['q'];
       if (query) {
         this.loading = true;

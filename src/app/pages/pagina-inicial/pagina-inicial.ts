@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NgbdCarouselPause } from '../../components/ngbd-carousel-pause/ngbd-carousel-pause';
 import { CardsList } from '../../components/cards-list/cards-list';
 import { MovieDetails } from '../../components/movie-details/movie-details';
+import { Background } from '../../components/background/background';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -17,6 +18,7 @@ import { MovieDetails } from '../../components/movie-details/movie-details';
     NgbdCarouselPause,
     CardsList,
     MovieDetails,
+    Background,
   ],
   templateUrl: './pagina-inicial.html',
   styleUrl: './pagina-inicial.css',
