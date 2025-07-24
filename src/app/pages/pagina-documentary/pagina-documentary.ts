@@ -38,7 +38,7 @@ export class PaginaDocumentary {
 
   ngOnInit() {
     this.movieService.getDataByGenre('movie', 99).subscribe((response) => {
-      for (let index = 0; index < 5; index++) {
+      for (let index = 3; index < 8; index++) {
         this.carouselData.push(response.results[index]);
       }
       this.moviesDocumentary = response.results;
