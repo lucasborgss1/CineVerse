@@ -46,15 +46,15 @@ main {
   height: auto;
 }
 .cv-card {
-  background-color: #000;
+  background-color: #00000000;
   border: 1px solid rgb(245, 198, 28);
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
-  transition: transform 0.15s ease, box-shadow 0.3s ease;
+  transition: transform 0.15s ease, box-shadow 0.3s;
 }
 .cv-card:hover {
   transform: translateY(-4px) scale(1.01);
-  box-shadow: var(--cv-yellow) 0 0 12px 2px;
+  box-shadow: var(--cv-yellow) 1px 1px 12px 2px;
 }
 
 .card-body {

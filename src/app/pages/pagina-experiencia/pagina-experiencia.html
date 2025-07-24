@@ -2,7 +2,6 @@
 
 <main class="cv-home py-5 py-md-6">
   <section class="container experiencia-container text-center text-md-start">
-    <!-- O que é o Cine Verse? -->
     <div class="row align-items-center gy-4">
       <div class="col-12 col-md-6 order-2 order-md-1 textos">
         <h2 class="cv-section-title mb-3">O que é o Cine Verse?</h2>
@@ -17,11 +16,19 @@
       <div
         class="col-12 col-md-6 order-1 order-md-2 d-flex justify-content-center"
       >
-        <img
+        <ngb-carousel
+          *ngIf="images.length"
           class="img-fluid"
-          src="images/img1.png"
-          alt="Banner de filmes Cine Verse"
-        />
+          [interval]="2500"
+          [showNavigationArrows]="true"
+          [showNavigationIndicators]="false"
+        >
+          <ng-template ngbSlide *ngFor="let img of images; let i = index">
+            <div class="picsum-img-wrapper">
+              <img [src]="img" [alt]="'Slide ' + (i + 1)" class="img-fluid" />
+            </div>
+          </ng-template>
+        </ngb-carousel>
       </div>
     </div>
 
