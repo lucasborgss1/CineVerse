@@ -10,18 +10,14 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header implements OnInit {
+export class Header {
   isInputFocused = false;
   query = '';
   isHovered = false;
-  isLoggedIn: boolean = false;
 
   @Output() filterSelected = new EventEmitter<string>();
 
-  constructor(private router: Router, private authService: AuthService) {}
-  ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
-  }
+  constructor(private router: Router) {}
 
   selectFilter(filter: string) {
     this.filterSelected.emit(filter);
@@ -34,9 +30,5 @@ export class Header implements OnInit {
         queryParams: { q: trimmedQuery },
       });
     }
-  }
-
-  goToLogin() {
-    this.router.navigate(['/login']);
   }
 }
