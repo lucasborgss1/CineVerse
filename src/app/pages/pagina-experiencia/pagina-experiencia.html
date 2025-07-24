@@ -1,48 +1,122 @@
-<app-header />
+<app-header-experiencia />
 
-<main>
-  <section class="carousel-section" *ngIf="isCarouselLoaded">
-    <ngbd-carousel-pause [content]="carouselData" />
+<main class="cv-home py-5 py-md-6">
+  <section class="container experiencia-container text-center text-md-start">
+    <!-- O que é o Cine Verse? -->
+    <div class="row align-items-center gy-4">
+      <div class="col-12 col-md-6 order-2 order-md-1 textos">
+        <h2 class="cv-section-title mb-3">O que é o Cine Verse?</h2>
+        <p class="cv-lead">
+          O <span class="cv-highlight">Cine Verse</span> é uma plataforma web
+          completa que permite ao usuário explorar um catálogo rico de
+          conteúdos, incluindo filmes, séries, animações (desenhos), e
+          documentários. Conectando amantes do entretenimento ao que há de mais
+          novo e relevante na tela.
+        </p>
+      </div>
+      <div
+        class="col-12 col-md-6 order-1 order-md-2 d-flex justify-content-center"
+      >
+        <img
+          class="img-fluid"
+          src="images/img1.png"
+          alt="Banner de filmes Cine Verse"
+        />
+      </div>
+    </div>
+
+    <div class="row gy-4 mt-5">
+      <div class="col-12">
+        <h2 class="cv-section-title text-center mb-4">Funcionalidades</h2>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3 d-flex">
+        <div class="card cv-card flex-fill h-100 text-center text-sm-start">
+          <div class="card-body">
+            <h3 class="card-title h5">Navegação por Categorias</h3>
+            <p class="card-text">
+              Explore seções como "Em alta", "Séries", "Animações" e
+              "Documentários".
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3 d-flex">
+        <div class="card cv-card flex-fill h-100 text-center text-sm-start">
+          <div class="card-body">
+            <h3 class="card-title h5">Pesquisa Personalizada</h3>
+            <p class="card-text">
+              Encontre filmes e séries por nome, gênero, popularidade, elenco ou
+              classificação.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3 d-flex">
+        <div class="card cv-card flex-fill h-100 text-center text-sm-start">
+          <div class="card-body">
+            <h3 class="card-title h5">Acesso Exclusivo</h3>
+            <p class="card-text">
+              Faça login e aproveite recursos como recomendações, filtros
+              avançados e listas personalizadas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-6 col-lg-3 d-flex">
+        <div class="card cv-card flex-fill h-100 text-center text-sm-start">
+          <div class="card-body">
+            <h3 class="card-title h5">Filtros por Elenco e Imagens</h3>
+            <p class="card-text">
+              Veja os filmes e séries com base no elenco desejado e visualize
+              imagens, posters e detalhes visuais.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="d-flex"
+      style="justify-content: space-between; margin-top: 6rem; gap: 5rem"
+    >
+      <div class="col-12 col-lg-6 mx-auto">
+        <h2 class="cv-section-title text-center mb-3">Público-Alvo</h2>
+        <div style="width: 450px; text-align: center">
+          <ul
+            class="cv-list list-unstyled text-center mb-4"
+            style="color: #fff"
+          >
+            <li>
+              Cinéfilos que querem se manter atualizados sobre o mundo do cinema
+            </li>
+            <li>Usuários casuais que procuram sugestões de filmes e séries</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-12 col-lg-8 mx-auto text-center">
+        <div style="width: 450px; text-align: center">
+          <h2 class="cv-section-title mb-3">Nossa Proposta</h2>
+          <p style="color: #fff">
+            Tornar a descoberta de filmes, séries e documentários uma
+            experiência mais acessível, visualmente agradável e personalizada.
+            Acreditamos que a paixão pelo cinema e entretenimento deve ser
+            vivida com praticidade e estilo.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <a (click)="onClickLogin()" class="btn">Entrar na Plataforma</a>
+      </div>
+    </div>
   </section>
-
-  <section class="movies-lists">
-    <div class="list" *ngIf="isUpcomingLoaded">
-      <h3>Em breve</h3>
-      <app-cards-list
-        [list]="upcomingList"
-        (cardSelected)="openDetails($event)"
-      />
-    </div>
-
-    <div class="list" *ngIf="isTrendingLoaded">
-      <h3>Em alta</h3>
-      <app-cards-list
-        [list]="trendingList"
-        (cardSelected)="openDetails($event)"
-      />
-    </div>
-
-    <div class="list" *ngIf="isTopRatedMoviesLoaded">
-      <h3>Melhores filmes</h3>
-      <app-cards-list
-        [list]="topRatedMoviesList"
-        (cardSelected)="openDetails($event)"
-      />
-    </div>
-
-    <div class="list" *ngIf="isTopRatedTvLoaded">
-      <h3>Para maratonar</h3>
-      <app-cards-list
-        [list]="topRatedTvList"
-        (cardSelected)="openDetails($event)"
-      />
-    </div>
-  </section>
-
-  <app-movie-details
-    *ngIf="selectedMedia"
-    [media]="selectedMedia"
-    (close)="selectedMedia = null"
-  />
 </main>
+
 <app-footer />
+<app-background />
