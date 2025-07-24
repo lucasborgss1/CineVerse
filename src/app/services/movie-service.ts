@@ -80,7 +80,7 @@ export class MovieService {
     return this.http.get<ApiResponse<MediaItem>>(url, { headers, params });
   }
 
-  searchMulti(query: string): Observable<ApiResponse<MediaItem>> {
+  searchMulti(query: string, page: number): Observable<ApiResponse<MediaItem>> {
     const url = `${this.BASE_URL}/search/multi`;
 
     const headers = new HttpHeaders({
@@ -92,7 +92,7 @@ export class MovieService {
       .set('query', query)
       .set('language', 'pt-BR')
       .set('include_adult', 'false')
-      .set('page', '1');
+      .set('page', page.toString());
 
     return this.http.get<ApiResponse<MediaItem>>(url, { headers, params });
   }

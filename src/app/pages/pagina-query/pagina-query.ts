@@ -9,8 +9,10 @@ import { ContentCards } from '../../components/content-cards/content-cards';
 import { MovieDetails } from '../../components/movie-details/movie-details';
 import { CardsList } from '../../components/cards-list/cards-list';
 import { Background } from '../../components/background/background';
+import { forkJoin } from 'rxjs';
 
 @Component({
+  standalone: true,
   selector: 'app-pagina-query',
   imports: [
     CommonModule,
@@ -28,7 +30,7 @@ export class PaginaQuery implements OnInit {
   resultados: MediaItem[] = [];
   loading = true;
   selectedMedia: any = null;
-  queryText = [''];
+  queryText = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -37,14 +39,24 @@ export class PaginaQuery implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.queryText = params['q'];
       const query = params['q'];
       if (query) {
         this.loading = true;
-        this.movieService.searchMulti(query).subscribe((res) => {
-          this.resultados = res.results;
-          this.loading = false;
-        });
+        forkJoin([
+          this.movieService.searchMulti(query, 1),
+          this.movieService.searchMulti(query, 2),
+          this.movieService.searchMulti(query, 3),
+          this.movieService.searchMulti(query, 4),
+        ]).subscribe(
+          (responses) => {
+            this.resultados = responses.flatMap((res) => res.results);
+            this.loading = false;
+          },
+          (error) => {
+            console.error('Erro na busca:', error);
+            this.loading = false;
+          }
+        );
       }
     });
   }
