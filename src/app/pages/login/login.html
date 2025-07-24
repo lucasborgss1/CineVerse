@@ -1,15 +1,12 @@
+<app-header-experiencia></app-header-experiencia>
+
 <main>
   <section>
-    <div class="logo" style="margin-top: 3rem; color: #f5c51c">
-      <a href=""><span>CINE</span> VERSE</a> &copy;
-    </div>
-    <p style="margin: 0">
-      Ao acessar sua conta, você terá acesso a recursos exclusivos que tornarão
-      sua experiência ainda melhor:
-    </p>
-    <div style="display: flex">
+    <div style="display: flex; align-items: center; justify-content: center">
       <div class="descricao text-light">
-        <ul class="list-unstyled mt-3">
+        <h1 *ngIf="isCadastro" class="title">Cadastro</h1>
+        <h1 *ngIf="!isCadastro" class="title">Login</h1>
+        <ul class="list-unstyled">
           <li class="mb-2">
             <i class="bi bi-film" style="color: #f5c51c; margin-right: 8px"></i>
             Páginas completas de <strong>filmes</strong>,
@@ -53,7 +50,7 @@
         (ngSubmit)="onSubmit()"
       >
         <div class="position-relative">
-          <label for="exampleInputEmail1" class="form-label">Login</label>
+          <label for="exampleInputEmail1" class="form-label">Login:</label>
           <input
             type="text"
             class="form-control"
@@ -89,7 +86,10 @@
           </div>
         </div>
 
-        <a class="form-text" style="cursor: pointer" (click)="goToCadastro()"
+        <a
+          class="form-text"
+          style="cursor: pointer; display: flex; margin-left: auto"
+          (click)="goToCadastro()"
           >Cadastre-se</a
         >
 
@@ -109,31 +109,32 @@
         [formGroup]="formLogin"
         (ngSubmit)="onSubmit()"
       >
-        <div class="d-flex justify-content-between" style="width: 100%">
-          <a class="cadastrobt" style="cursor: pointer" (click)="goToLogin()">
-            voltar
-          </a>
-        </div>
         <div class="position-relative">
-          <label class="form-label">Informe seu nome</label>
+          <label for="exampleInputEmail1" class="form-label"
+            >Primeiro, seu nome ou apelido:</label
+          >
           <input
             type="text"
             class="form-control"
             formControlName="nome"
-            placeholder="Digite seu nome"
+            placeholder="Nome"
           />
         </div>
         <div class="position-relative">
-          <label class="form-label">Informe seu e-mail</label>
+          <label for="exampleInputEmail1" class="form-label"
+            >Seu e-mail para receber nossas novidades:</label
+          >
           <input
             type="text"
             class="form-control"
             formControlName="email"
-            placeholder="Digite seu email"
+            placeholder="E-mail"
           />
         </div>
         <div class="position-relative">
-          <label class="form-label">Crie uma senha:</label>
+          <label for="exampleInputEmail1" class="form-label"
+            >Agora a senha para logar:</label
+          >
           <div style="position: relative; display: flex; align-items: center">
             <input
               [type]="passwordVisible ? 'text' : 'password'"
@@ -163,10 +164,10 @@
           class="d-flex"
           style="
             max-width: 100%;
-            align-items: start;
             gap: 1rem;
-            justify-content: center;
+            align-items: center;
             margin-bottom: 1rem;
+            text-align: center;
           "
         >
           <input type="checkbox" id="lgpdConsent" formControlName="lgpd" />
@@ -183,8 +184,18 @@
         >
           {{ errorMessage }}
         </div>
+        <a
+          class="cadastrobt"
+          style="cursor: pointer; display: flex; margin-left: auto"
+          (click)="goToLogin()"
+        >
+          Login
+        </a>
         <button type="submit" class="btn btn-primary">Cadastre-se</button>
       </form>
     </div>
   </section>
 </main>
+
+<app-footer> </app-footer>
+<app-background> </app-background>

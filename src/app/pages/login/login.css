@@ -2,24 +2,27 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../../../../public/image.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+
+  color: #f5c51c;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
   color: #f5c51c;
 }
 
 section {
   display: flex;
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.616);
   border-radius: 5px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
 
   gap: 1rem;
   align-items: center;
   justify-content: center;
+
+  max-height: 500px;
 }
 
 .descricao {
@@ -29,37 +32,28 @@ section {
 
 .form-login {
   padding: 3rem 3.5rem;
-  width: 400px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #fff;
 }
 
-.logo a {
-  text-decoration: none;
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: #f5c51c;
-  cursor: pointer;
-}
-
-.logo a span {
-  background-color: #f5c51c;
-  padding: 2px 8px;
-  border-radius: 5px;
-  color: #000;
-}
-
 .position-relative {
   width: 100%;
   margin-bottom: 1.6rem;
+  transition: all 0.3s;
+}
+
+.position-relative:hover,
+.position-relative:focus-within {
+  transform: scale(1.03);
 }
 
 label.form-label {
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  display: block;
+  width: 100%;
+  margin-bottom: 0.1rem;
   color: #f5c51c;
 }
 

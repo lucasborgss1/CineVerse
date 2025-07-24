@@ -9,11 +9,21 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { Footer } from '../../components/footer/footer';
+import { Background } from '../../components/background/background';
+import { HeaderExperiencia } from '../../components/header-experiencia/header-experiencia';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, CommonModule],
+  imports: [
+    ReactiveFormsModule,
+    FormsModule,
+    CommonModule,
+    Footer,
+    Background,
+    HeaderExperiencia,
+  ],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -77,7 +87,7 @@ export class Login implements OnInit {
         nome: this.usuario.nome,
         email: this.usuario.email,
       });
-      this.router.navigate(['/movies']);
+      this.router.navigate(['/cineverse']);
     } else {
       this.errorMessage = 'Usuário ou senha inválidos.';
     }
@@ -101,11 +111,13 @@ export class Login implements OnInit {
 
   goToCadastro() {
     this.isCadastro = true;
+    this.errorMessage = '';
     this.setValidações();
   }
 
   goToLogin() {
     this.isCadastro = false;
+    this.errorMessage = '';
     this.setValidações();
   }
 }
