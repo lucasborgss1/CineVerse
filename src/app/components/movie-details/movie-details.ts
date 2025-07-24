@@ -21,7 +21,7 @@ export class MovieDetails implements OnInit {
   constructor(private movieService: MovieService) {}
 
   ngOnInit(): void {
-    const type = this.media.media_type || this.type || 'movie';
+    const type = this.type || this.media.media_type || 'movie';
     this.loadingTrailer = true;
 
     this.movieService
