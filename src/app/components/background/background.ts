@@ -10,7 +10,7 @@ export class Background implements OnInit {
   ngOnInit() {
     particlesJS('particles-js', {
       particles: {
-        number: { value: 100, density: { enable: true, value_area: 1000 } },
+        number: { value: 100, density: { enable: true, value_area: 500 } },
         color: { value: '#f5c51c' },
         shape: {
           type: 'circle',
@@ -19,12 +19,12 @@ export class Background implements OnInit {
           image: { src: 'img/github.svg', width: 100, height: 100 },
         },
         opacity: {
-          value: 0.38,
+          value: 0.8,
           random: true,
-          anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false },
+          anim: { enable: false, speed: 0.5, opacity_min: 0.1, sync: false },
         },
         size: {
-          value: 6,
+          value: 3,
           random: true,
           anim: { enable: false, speed: 40, size_min: 0.1, sync: false },
         },
@@ -36,29 +36,29 @@ export class Background implements OnInit {
           width: 2,
         },
         enable: true,
-        speed: 0.2,
+        speed: 0.1,
         direction: 'none',
         random: false,
         straight: false,
         out_mode: 'out',
         bounce: false,
-        attract: { enable: false, rotateX: 600, rotateY: 1200 },
+        attract: { enable: true, rotateX: 200, rotateY: 500 },
       },
       interactivity: {
-        detect_on: 'canvas',
+        detect_on: 'window',
         events: {
           onhover: { enable: true, mode: 'bubble' },
-          onclick: { enable: true, mode: 'repulse' },
+          onclick: { enable: false, mode: 'repulse' },
           resize: true,
         },
         modes: {
           grab: { distance: 400, line_linked: { opacity: 0.5 } },
           bubble: {
-            distance: 400,
-            size: 4,
+            distance: 200,
+            size: 3.3,
             duration: 0.3,
             opacity: 1,
-            speed: 3,
+            speed: 4,
           },
           repulse: { distance: 200, duration: 0.4 },
           push: { particles_nb: 4 },
