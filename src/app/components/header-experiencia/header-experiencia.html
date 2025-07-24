@@ -1,0 +1,30 @@
+<header>
+  <div class="header-container">
+    <div class="logo">
+      <a href=""><span>CINE</span> VERSE</a> &copy;
+    </div>
+    <nav class="nav">
+      <ul class="nav-list">
+        <li>
+          <a
+            routerLink="/experiencia"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="goToExperiencia()"
+            >CineVerse</a
+          >
+        </li>
+
+        <li>
+          <a
+            routerLink="/login"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            (click)="goToLogin()"
+            >Entrar/Cadastro</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
