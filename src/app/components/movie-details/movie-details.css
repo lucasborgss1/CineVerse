@@ -70,6 +70,7 @@
   background-color: transparent;
   color: #f5c51c;
   transition: all 0.3s ease-in-out;
+  max-width: 300px;
   width: 100%;
   padding: 0.6rem 1rem;
   border-radius: 6px;
@@ -79,6 +80,7 @@
 .trailer-button:hover {
   background-color: #f5c51c;
   color: #1e1e1e;
+  max-width: 300px;
 }
 
 .trailer-link {
@@ -121,7 +123,6 @@
   }
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .movie-details-container {
     flex-direction: column;

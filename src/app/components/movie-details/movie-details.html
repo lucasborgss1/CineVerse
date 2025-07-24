@@ -41,14 +41,16 @@
     <p class="genres">{{ getGenres(media).join(", ") }}</p>
     <p class="overview">{{ media.overview || "Descrição não disponível." }}</p>
 
-    <a
-      *ngIf="trailer"
-      [href]="'https://www.youtube.com/watch?v=' + trailer"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="trailer-link"
-    >
-      <button class="btn trailer-button">🎬 Assista o trailer</button>
-    </a>
+    <div style="display: flex; justify-content: space-between">
+      <a
+        *ngIf="trailer"
+        [href]="'https://www.youtube.com/watch?v=' + trailer"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="trailer-link"
+      >
+        <button class="btn trailer-button">Assista o trailer</button>
+      </a>
+    </div>
   </div>
 </div>
