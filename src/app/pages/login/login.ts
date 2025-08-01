@@ -35,7 +35,6 @@ export class Login implements OnInit {
 
   usuario = {
     id: 1,
-    login: 'lucas@123',
     nome: 'Lucas de Almeida Borges',
     senha: '123456',
     email: 'lucas123@gmail.com',
@@ -49,8 +48,8 @@ export class Login implements OnInit {
 
   ngOnInit(): void {
     this.formLogin = this.fb.group({
-      nome: ['', Validators.required],
-      email: [''],
+      nome: [''],
+      email: ['', [Validators.required, Validators.email]],
       senha: ['', Validators.required],
       lgpd: [false],
     });
@@ -60,36 +59,58 @@ export class Login implements OnInit {
 
   setValidações() {
     if (this.isCadastro) {
+      this.formLogin.get('nome')?.setValidators([Validators.required]);
       this.formLogin
         .get('email')
         ?.setValidators([Validators.required, Validators.email]);
+      this.formLogin
+        .get('senha')
+        ?.setValidators([Validators.required, Validators.minLength(6)]);
       this.formLogin.get('lgpd')?.setValidators(Validators.requiredTrue);
     } else {
-      this.formLogin.get('email')?.clearValidators();
+      this.formLogin.get('nome')?.clearValidators();
+      this.formLogin.get('email')?.setValidators([Validators.required]);
+      this.formLogin.get('senha')?.setValidators([Validators.required]);
       this.formLogin.get('lgpd')?.clearValidators();
     }
 
-    this.formLogin.get('email')?.updateValueAndValidity();
-    this.formLogin.get('lgpd')?.updateValueAndValidity();
+    ['nome', 'email', 'senha', 'lgpd'].forEach((campo) => {
+      this.formLogin.get(campo)?.updateValueAndValidity();
+    });
   }
 
   onSubmit() {
+    this.formLogin.markAllAsTouched();
+
     if (this.formLogin.invalid) {
       this.errorMessage = 'Por favor, preencha todos os campos corretamente.';
       return;
     }
 
-    const { nome, senha } = this.formLogin.value;
+    const { nome, email, senha } = this.formLogin.value;
 
-    if (nome === this.usuario.login && senha === this.usuario.senha) {
-      this.authService.login({
-        id: this.usuario.id,
-        nome: this.usuario.nome,
-        email: this.usuario.email,
-      });
-      this.router.navigate(['/cineverse']);
+    if (this.isCadastro) {
+      const result = this.authService.cadastrar({ nome, email, senha });
+
+      if (!result.success) {
+        this.errorMessage = result.message!;
+        return;
+      }
+
+      const usuarioCriado = this.authService.validarLogin(email, senha);
+      if (usuarioCriado) {
+        this.authService.login(usuarioCriado);
+        this.router.navigate(['/cineverse']);
+      }
     } else {
-      this.errorMessage = 'Usuário ou senha inválidos.';
+      const user = this.authService.validarLogin(email, senha);
+
+      if (user) {
+        this.authService.login(user);
+        this.router.navigate(['/cineverse']);
+      } else {
+        this.errorMessage = 'Usuário ou senha inválidos.';
+      }
     }
   }
 
@@ -119,5 +140,29 @@ export class Login implements OnInit {
     this.isCadastro = false;
     this.errorMessage = '';
     this.setValidações();
+  }
+
+  getCampoErro(campo: string): string {
+    const control = this.formLogin.get(campo);
+
+    if (!control || !control.touched || control.valid) return '';
+
+    if (control.errors?.['required']) {
+      return 'Este campo é obrigatório.';
+    }
+
+    if (campo === 'email' && control.errors?.['email']) {
+      return 'Insira um e-mail válido.';
+    }
+
+    if (campo === 'senha' && control.errors?.['minlength']) {
+      return `A senha deve ter no mínimo ${control.errors['minlength'].requiredLength} caracteres.`;
+    }
+
+    if (campo === 'lgpd' && control.errors?.['required']) {
+      return 'Você precisa aceitar os termos.';
+    }
+
+    return '';
   }
 }

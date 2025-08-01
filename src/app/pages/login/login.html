@@ -50,15 +50,16 @@
         (ngSubmit)="onSubmit()"
       >
         <div class="position-relative">
-          <label for="exampleInputEmail1" class="form-label">Login:</label>
+          <label for="exampleInputEmail1" class="form-label">E-mail</label>
           <input
             type="text"
             class="form-control"
             id="InputLogin"
             required="true"
-            formControlName="nome"
-            placeholder="Digite seu login"
+            formControlName="email"
+            placeholder="Digite seu email"
           />
+          <div class="text-danger small mt-1">{{ getCampoErro("email") }}</div>
         </div>
         <div class="position-relative">
           <label for="exampleInputPassword1" class="form-label">Senha:</label>
@@ -86,15 +87,10 @@
               "
             ></i>
           </div>
+          <div class="text-danger small mt-1">
+            {{ getCampoErro("senha") }}
+          </div>
         </div>
-
-        <a
-          class="form-text"
-          style="cursor: pointer; display: flex; margin-left: auto"
-          (click)="goToCadastro()"
-          >Cadastre-se</a
-        >
-
         <div
           *ngIf="errorMessage"
           class="text-danger"
@@ -102,6 +98,13 @@
         >
           {{ errorMessage }}
         </div>
+        <a
+          class="form-text"
+          style="cursor: pointer; display: flex; margin-left: auto"
+          (click)="goToCadastro()"
+          >Cadastre-se</a
+        >
+
         <button type="submit" class="btn btn-primary">Entrar</button>
       </form>
 
@@ -122,6 +125,7 @@
             formControlName="nome"
             placeholder="Nome"
           />
+          <div class="text-danger small mt-1">{{ getCampoErro("nome") }}</div>
         </div>
         <div class="position-relative">
           <label for="exampleInputEmail1" class="form-label"
@@ -134,6 +138,7 @@
             formControlName="email"
             placeholder="E-mail"
           />
+          <div class="text-danger small mt-1">{{ getCampoErro("email") }}</div>
         </div>
         <div class="position-relative">
           <label for="exampleInputEmail1" class="form-label"
@@ -163,6 +168,9 @@
               "
             ></i>
           </div>
+          <div class="text-danger small mt-1">
+            {{ getCampoErro("senha") }}
+          </div>
         </div>
 
         <div
@@ -181,7 +189,7 @@
             <a href="#">política de privacidade</a>.
           </label>
         </div>
-
+        <div class="text-danger small mt-1">{{ getCampoErro("lgpd") }}</div>
         <div
           *ngIf="errorMessage"
           class="text-danger"
