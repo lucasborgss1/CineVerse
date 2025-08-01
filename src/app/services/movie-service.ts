@@ -80,6 +80,17 @@ export class MovieService {
     return this.http.get<ApiResponse<MediaItem>>(url, { headers, params });
   }
 
+  getCredits(mediaType: 'movie' | 'tv', id: number): Observable<any> {
+    const url = `${this.BASE_URL}/${mediaType}/${id}/credits?language=pt-BR`;
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.TOKEN}`,
+      accept: 'application/json',
+    });
+
+    return this.http.get<any>(url, { headers });
+  }
+
   searchMulti(query: string, page: number): Observable<ApiResponse<MediaItem>> {
     const url = `${this.BASE_URL}/search/multi`;
 

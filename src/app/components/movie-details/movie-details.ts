@@ -4,6 +4,7 @@ import { MovieService } from '../../services/movie-service';
 import { CommonModule } from '@angular/common';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { take } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movie-details',
@@ -12,17 +13,28 @@ import { take } from 'rxjs';
   styleUrl: './movie-details.css',
 })
 export class MovieDetails implements OnInit {
+  safeTrailerUrl!: SafeResourceUrl;
   trailer?: string;
   loadingTrailer = false;
   @Input() type?: string;
   @Input() media!: MediaItem;
   @Output() close = new EventEmitter<void>();
 
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private movieService: MovieService,
+    private sanitizer: DomSanitizer
+  ) {}
 
   ngOnInit(): void {
     const type = this.type || this.media.media_type || 'movie';
     this.loadingTrailer = true;
+
+    this.movieService
+      .getCredits('movie', this.media.id)
+      .subscribe((response) => {
+        console.log(response.cast);
+        console.log(response.crew);
+      });
 
     this.movieService
       .getTrailers(type, this.media.id)
@@ -33,6 +45,12 @@ export class MovieDetails implements OnInit {
         );
         this.trailer = firstTrailer?.key ?? '';
         this.loadingTrailer = false;
+
+        if (this.trailer) {
+          this.safeTrailerUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+            `https://www.youtube.com/embed/${this.trailer}?rel=0&autoplay=0`
+          );
+        }
       });
   }
 
