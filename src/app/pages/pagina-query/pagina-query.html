@@ -1,9 +1,13 @@
 <app-header />
 <main>
   <div class="container">
-    <h2 *ngIf="!loading && resultados.length">
+    <h2 *ngIf="!loading && resultados.length && queryText">
       Resultados encontrados para:
       <span style="color: white; margin-left: 1rem">{{ queryText }}</span>
+    </h2>
+    <h2 *ngIf="!loading && resultados.length && genreName">
+      Gênero:
+      <span style="color: white; margin-left: 1rem">{{ genreName }}</span>
     </h2>
     <p *ngIf="!loading && resultados.length === 0">
       Nenhum resultado encontrado.
@@ -11,6 +15,7 @@
 
     <div *ngIf="loading">Carregando...</div>
 
+    <hr />
     <div class="grid-gallery" *ngIf="!loading && resultados.length > 0">
       <app-content-cards
         *ngFor="let item of resultados"
@@ -18,6 +23,7 @@
         [title]="item.name || item.title || ''"
         [vote_average]="item.vote_average"
         [data]="item"
+        [placement]="'auto'"
         (cardClick)="openDetails(item)"
       />
     </div>
