@@ -14,20 +14,74 @@
           >
         </li>
         <li>
-          <a
-            routerLink="/movies"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Filmes</a
+          <div
+            ngbDropdown
+            #movieDropdown="ngbDropdown"
+            class="d-inline-block"
+            container="body"
+            [autoClose]="'outside'"
+            (mouseenter)="movieDropdown.open()"
+            (mouseleave)="movieDropdown.close()"
           >
+            <a
+              routerLink="/movies"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              id="dropdownMovies"
+              ngbDropdownToggle
+              >Filmes</a
+            >
+            <div
+              ngbDropdownMenu
+              aria-labelledby="dropdownMovies"
+              class="genre-dropdown-menu"
+              (mouseenter)="movieDropdown.open()"
+              (mouseleave)="movieDropdown.close()"
+            >
+              <button
+                *ngFor="let genre of movieGenres"
+                ngbDropdownItem
+                (click)="navigateToGenre('movie', genre.id, genre.name)"
+              >
+                {{ genre.name }}
+              </button>
+            </div>
+          </div>
         </li>
         <li>
-          <a
-            routerLink="/series"
-            routerLinkActive="active"
-            [routerLinkActiveOptions]="{ exact: true }"
-            >Séries</a
+          <div
+            ngbDropdown
+            #seriesDropdown="ngbDropdown"
+            class="d-inline-block"
+            container="body"
+            [autoClose]="'outside'"
+            (mouseenter)="seriesDropdown.open()"
+            (mouseleave)="seriesDropdown.close()"
           >
+            <a
+              routerLink="/series"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              id="dropdownSeries"
+              ngbDropdownToggle
+              >Séries/TV</a
+            >
+            <div
+              ngbDropdownMenu
+              aria-labelledby="dropdownSeries"
+              class="genre-dropdown-menu"
+              (mouseenter)="seriesDropdown.open()"
+              (mouseleave)="seriesDropdown.close()"
+            >
+              <button
+                *ngFor="let genre of tvGenres"
+                ngbDropdownItem
+                (click)="navigateToGenre('tv', genre.id, genre.name)"
+              >
+                {{ genre.name }}
+              </button>
+            </div>
+          </div>
         </li>
         <li>
           <a
