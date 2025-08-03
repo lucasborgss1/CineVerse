@@ -13,7 +13,6 @@ export class MovieService {
     'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmOTgxODc0NGMyYmUwMmYxYzZhYzQzMGFlOWRmOWMwNCIsIm5iZiI6MTczNjU1MjA3MC42ODEsInN1YiI6IjY3ODFhZTg2MDY5MGFjMDZlNzdiMTI3MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7Kex1d-knxvgf2kFLv0_7o4xkDBB6visxW5Wi85o48Y';
 
   constructor(private http: HttpClient) {}
-  // Método para pegar trending (tv, movie, all)
   getTrending(
     mediaType: 'tv' | 'movie' | 'all',
     timeWindow: 'day' | 'week' = 'day',
@@ -63,7 +62,8 @@ export class MovieService {
 
   getDataByGenre(
     mediaType: 'tv' | 'movie',
-    genre: number
+    genre: number,
+    page: number = 1
   ): Observable<ApiResponse<MediaItem>> {
     const url = `${this.BASE_URL}/discover/${mediaType}`;
 
@@ -75,7 +75,9 @@ export class MovieService {
     const params = new HttpParams()
       .set('language', 'pt-BR')
       .set('with_genres', genre.toString())
-      .set('sort_by', 'popularity.desc');
+      .set('sort_by', 'popularity.desc')
+      .set('include_adult', 'false')
+      .set('page', page.toString());
 
     return this.http.get<ApiResponse<MediaItem>>(url, { headers, params });
   }
