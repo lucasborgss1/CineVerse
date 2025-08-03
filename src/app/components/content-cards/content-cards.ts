@@ -17,6 +17,7 @@ import { MediaItem } from '../../models/models';
 })
 export class ContentCards {
   @Input() src: string = '';
+  @Input() placement: string = 'auto';
   @Input() title: string = '';
   @Input() vote_average: number = 0;
   @Input() data!: MediaItem;
